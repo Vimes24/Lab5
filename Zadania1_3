@@ -1,0 +1,76 @@
+package javaapplication1;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author W64201
+ */
+public class Lab3 extends Matematyka {
+
+    //zadanie 3
+    void WypiszDlugosc(String napis) {
+        System.out.println(napis.length());
+    }
+
+    public static void main(String[] args) throws Exception {
+        Matematyka obj1 = new Matematyka();
+        System.out.println(obj1.dodaj(3, 5));
+        System.out.println(obj1.dodaj(3.0, 4.0, 5.0));
+
+        //zad.2
+        System.out.println("Podaj liczbę: ");
+        Scanner input = new Scanner(System.in);
+
+        double liczba = 0;
+
+        while (true) {
+            try {
+                liczba = input.nextDouble();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Podaj poprawną liczbę: ");
+                input.next();
+            }
+        }
+        if (liczba < 0) {
+            throw new IllegalArgumentException(String.format("Pierwiastek kwadratowy z liczby rzeczywistej <nie istnieje"));
+        }
+        System.out.println("Pierwiastek z: " + liczba + ", wynosi: " + Math.sqrt(liczba));
+
+        // zadanie 3    
+        Lab3 obj = new Lab3();
+
+        try {
+            obj.WypiszDlugosc(null);
+        } catch (NullPointerException e) {
+            //e.printStackTrace(System.out);
+            //e.fillInStackTrace();
+            //throw e;
+            //pkt 4 - tak
+            //pkt 6 - throws Exception przy main
+            throw new Exception(e); //pkt 7 - wtedy wcześniejsze wersje są zakomentowane
+        }
+    }
+
+}
+
+
+
+package javaapplication1;
+
+/**
+ *
+ * @author W64201
+ */
+public class Matematyka {
+    public int dodaj(int a, int b){
+        System.out.println("Meotda zwraca typ int o argumentach typu int: " + a + ", " + b);
+        return a + b;
+    }
+    
+    public double dodaj(double a, double b, double c){
+        System.out.println("Meotda zwraca typ double o argumentach typu double: " + a + ", " + b + ", " + c);
+        return a + b + c;
+    }
